@@ -1,16 +1,11 @@
 import torchvision
 import torchvision.transforms as transforms
-import os
 
-def descargar_y_preparar_mnist(ruta_destino='./data'):
+def descargar_y_preparar_mnist():
     """
     Descarga el dataset MNIST y define las transformaciones.
-    La ruta de destino está fijada en el código según las instrucciones.
     """
-    print(f"Verificando/Descargando dataset MNIST en: {ruta_destino}...")
-    
-    # Asegurar que la carpeta exista
-    os.makedirs(ruta_destino, exist_ok=True)
+    print(f"Verificando/Descargando dataset MNIST")
 
     # El preprocesamiento: 
     # 1. ToTensor() convierte la imagen a tensor y escala a [0.0, 1.0]
@@ -22,7 +17,7 @@ def descargar_y_preparar_mnist(ruta_destino='./data'):
 
     # Descargar el conjunto de entrenamiento
     dataset_train = torchvision.datasets.MNIST(
-        root=ruta_destino, 
+        root='./', 
         train=True, 
         download=True, 
         transform=transformacion
@@ -30,7 +25,7 @@ def descargar_y_preparar_mnist(ruta_destino='./data'):
     
     # Descargar el conjunto de prueba (útil para validación/evaluación)
     dataset_test = torchvision.datasets.MNIST(
-        root=ruta_destino, 
+        root='./', 
         train=False, 
         download=True, 
         transform=transformacion
