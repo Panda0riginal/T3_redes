@@ -16,3 +16,6 @@ weights/
 # Gráficos y salidas
 resultados/
 *.png
+
+# notebooks
+*.ipynb
