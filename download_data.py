@@ -15,6 +15,13 @@ def descargar_y_preparar_mnist():
         transforms.Normalize((0.5,), (0.5,))
     ])
 
+    # Transformación inversa: [-1, 1] -> [0, 1]
+    # Usamos un Lambda para aplicar la matemática directamente sobre el tensor
+
+    anti_transformacion = transforms.Compose([
+        transforms.Lambda(lambda t: (t * 0.5) + 0.5)
+    ])
+
     # Descargar el conjunto de entrenamiento
     dataset_train = torchvision.datasets.MNIST(
         root='./', 
@@ -36,7 +43,7 @@ def descargar_y_preparar_mnist():
     print(f"Total imágenes prueba: {len(dataset_test)}")
     
     # Retornamos los datasets por si este script es importado desde train.py
-    return dataset_train, dataset_test
+    return dataset_train, dataset_test, anti_transformacion
 
 if __name__ == "__main__":
     # Al ejecutar este script directamente en la consola, descargará los datos.
