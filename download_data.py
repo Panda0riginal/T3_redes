@@ -1,11 +1,12 @@
 import torchvision
 import torchvision.transforms as transforms
 
-def descargar_y_preparar_mnist():
+def descargar_y_preparar(msg=False):
     """
     Descarga el dataset MNIST y define las transformaciones.
     """
-    print(f"Verificando/Descargando dataset MNIST")
+    if msg:
+        print(f"Verificando/Descargando dataset MNIST")
 
     # El preprocesamiento: 
     # 1. ToTensor() convierte la imagen a tensor y escala a [0.0, 1.0]
@@ -37,14 +38,14 @@ def descargar_y_preparar_mnist():
         download=True, 
         transform=transformacion
     )
-
-    print("¡Descarga completada con éxito!")
-    print(f"Total imágenes entrenamiento: {len(dataset_train)}")
-    print(f"Total imágenes prueba: {len(dataset_test)}")
+    if msg:
+        print("¡Descarga completada con éxito!")
+        print(f"Total imágenes entrenamiento: {len(dataset_train)}")
+        print(f"Total imágenes prueba: {len(dataset_test)}")
     
     # Retornamos los datasets por si este script es importado desde train.py
     return dataset_train, dataset_test, anti_transformacion
 
 if __name__ == "__main__":
     # Al ejecutar este script directamente en la consola, descargará los datos.
-    descargar_y_preparar_mnist()
+    descargar_y_preparar(msg=True)
